@@ -1,0 +1,52 @@
+Übersicht der Skripte für GoogleColab - https://colab.research.google.com/
+GoogleColab ist ein Jupyter-Notebook, sprich eine Sammlung von Pythonskripten.
+IFC-Dateien lassen sich per (AI)-Skript direkt bearbeiten, aufattribuieren, auswerten, etc.
+Skripte basieren auf IfcOpenShell.
+
+
+--- IfcAbbruchfarben
+Durchsucht die IFC-Datei nach allen „IfcColourRgb“-Werten und ersetzt diese durch den angegebenen RGB-Farbwert.
+Beispiel: Alle Farben eines Abbruchmodells in Gelb ändern
+
+
+--- IfcAttributesFromExcel
+Liest Attribute aus einer Excel-Datei aus und schreibt sie in die IFC-Datei. Nützlich, um Attribute an
+IfcBuilding oder IfcBuildingStorey anzuhängen, was in Revit derzeit technisch nicht möglich ist.
+
+
+--- IfcDistributionPort
+Analysiert mehrere IFC-Dateien und zählt die Anzahl der IfcDistributionPorts pro Modell.
+Fehlgeschlagen bei einem 900 MB Modell, erfolgreich bei Modellen von mehreren hundert MB.
+
+
+--- IfcGeschichteteWaende
+Identifiziert Wände in der IFC ohne gewisse Attribute und fügt diese hinzu. Notlösung für BIM-Abgaben,
+da Revit für geschichtete Wände keine Instanzattribute ins IFC exportieren kann.
+
+
+--- IfcKanalRohrHoehen
+Ermittelt die Start- und Endhöhen für alle Kanäle und Rohre im Modell. Exportiert eine Excel-Datei
+mit der IfcGUID der Bauteile und deren Höhen. Filterbar pro Geschoss für große Modelle.
+
+
+--- IfcKoordinatenZuruecksetzen
+Setzt das Koordinatensystem einer IFC-Datei zurück, z.B. auf 0,0,0.
+Eingegeben werden können X,Y,Z sowie der Drehwinkel. Anwendungsfall: Modell wurde falsch exportiert,
+z.B. georeferenziert, muss für den IFC-Viewer aber unverdreht am Nullpunkt liegen.
+
+
+--- IfcProvisionForVoid
+Sammlung mehrere Skripte um ein SuD-Modell mit einer Datenbankdatei zu synchronisieren.
+1) Schreibt die Bauteile und Attribute eines SuD-Modells in eine SQLite-Datenbank
+2) Importiert den Freigabestatus anhand der IfcGUID aus Excel in die Datenbank
+3) Schreibt den Freigabestatus aus der Datenbank zurück in die IFC-Datei
+4) Öffnet die Datenbankdatei um diese anzuschauen bzw. zu prüfen
+5) Exportiert die Datenbankdatei als Excel für die Durchsicht durch normale Menschen
+
+
+--- IfcRaumimport
+Importiert Räume aus einer Excel-Datei in eine leere IFC-Vorlagendatei (IFC2x3).
+Die IFC mit den Räumen kann dann in AutoCAD importiert werden. Bei neuen Projekten/Wettbewerben
+muss das Raumprogramm somit nicht händisch gezeichnet werden. Lohnt sich vor allem für Projekte
+mit tausenden Räumen.
+
